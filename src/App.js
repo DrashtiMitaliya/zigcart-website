@@ -1,13 +1,26 @@
 
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import { Header } from './Components/Header';
-import { Products } from './Components/Products';
+import { UpdateProfilePage } from './Components/UpdateProfilePage';
+import { ProductCard } from './Components/ProductCard';
+import { ChangePasswordPage } from './Components/ChangePasswordPage';
+import { ProductDetails } from './Components/ProductDetails';
+
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Products/>
+      <Header />
+      <Routes>
+        <Route path='/' element={<ProductCard />} ></Route>
+        <Route path='/profile' element={<UpdateProfilePage />} ></Route>
+        <Route path='/password' element={<ChangePasswordPage />}></Route>
+        <Route path='/products' element={<ProductCard />} ></Route>
+        <Route path='/products/:productId' element={<ProductDetails />}></Route>
+
+      </Routes>
+
     </div>
   );
 }
