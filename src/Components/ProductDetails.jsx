@@ -21,7 +21,7 @@ export const ProductDetails = () => {
             {data.images ?
                 <div className='container '>
                     <div className="row mt-5 ">
-                        <div className="col">
+                        <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                             <Carousel>
                                 {data.images.map(id => {
                                     return <Carousel.Item>
@@ -37,7 +37,7 @@ export const ProductDetails = () => {
 
                             </Carousel>
                         </div>
-                        <div className="col ">
+                        <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
                             <Card maxW='sm' padding={15}>
                             <CardBody>
                                     <Stack  className='m-auto' >
@@ -52,17 +52,17 @@ export const ProductDetails = () => {
                                 <CardBody className='bg-light text-dark'>
                                     <Stack className='text-start' fontSize={15} fontFamily="Arial" >
         
-                                        <Text>
+                                        <Text fontSize={15}>
                                         Stock : {data.stock}
-                                        <Divider/>
-                                        Discount : {data.discountPercentage}
-                                        <Divider/>
+                                        <Divider className='m-2'/>
+                                        Discount : {data.discountPercentage} %
+                                        <Divider className='m-2'/>
                                         Rating :{data.rating}
-                                        <Divider/>
+                                        <Divider className='m-2'/>
                                         Brand : {data.brand}
-                                        <Divider/>
+                                        <Divider className='m-2'/>
                                         Category : {data.category}
-                                        <Divider/>
+                                        <Divider className='m-2'/>
 
                                   
                                         </Text>

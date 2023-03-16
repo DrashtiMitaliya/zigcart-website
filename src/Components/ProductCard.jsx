@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchProducts } from '../features/productSlice'
 import Card from 'react-bootstrap/Card';
@@ -10,8 +10,10 @@ import { AiFillStar } from 'react-icons/ai';
 import { AiOutlineStock } from 'react-icons/ai';
 import { MdDiscount } from 'react-icons/md';
 import { RotatingLines } from 'react-loader-spinner';
+import { PageNav } from './PageNav';
 
 export const ProductCard = () => {
+    
     const productsData = useSelector((state) => state.products.products)
     const dispatch = useDispatch()
     useEffect(() => {
@@ -71,7 +73,10 @@ export const ProductCard = () => {
                 }
 
             </div>
+            <PageNav />
+
         </div>
+
 
 
     )

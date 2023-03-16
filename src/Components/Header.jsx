@@ -8,7 +8,9 @@ import { RiLogoutBoxRFill } from 'react-icons/ri';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
+
 export const Header = () => {
+
 
   return (
     <div>
@@ -25,7 +27,8 @@ export const Header = () => {
           <Link to='password'> <Button variant="light d-flex align-items-center " > <RiLockPasswordFill /> Change Password  </Button></Link>
         </Container>
       </Navbar>
-
+  
+   
     </div>
   )
 }

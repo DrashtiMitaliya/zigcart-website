@@ -11,7 +11,7 @@ const initialState = {
 
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", () => {
-    return axios.get("https://dummyjson.com/products")
+    return axios.get("https://dummyjson.com/products?limit=8")
         .then((response) => response.data)
 
 
