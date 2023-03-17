@@ -23,7 +23,7 @@ export const Header = () => {
             <Link to='profile' >Profile </Link>
 
           </Nav>
-          <Link to='/'><Button variant="light d-flex align-items-center " >  <RiLogoutBoxRFill /> Log Out  </Button></Link>
+          <Link to='/login'><Button variant="light d-flex align-items-center " >  <RiLogoutBoxRFill /> Log Out  </Button></Link>
           <Link to='password'> <Button variant="light d-flex align-items-center " > <RiLockPasswordFill /> Change Password  </Button></Link>
         </Container>
       </Navbar>

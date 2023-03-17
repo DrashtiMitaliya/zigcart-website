@@ -21,7 +21,7 @@ export const ProductDetails = () => {
             {data.images ?
                 <div className='container '>
                     <div className="row mt-5 ">
-                        <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 m-auto">
                             <Carousel>
                                 {data.images.map(id => {
                                     return <Carousel.Item>
@@ -37,8 +37,8 @@ export const ProductDetails = () => {
 
                             </Carousel>
                         </div>
-                        <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
-                            <Card maxW='sm' padding={15}>
+                        <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12   ">
+                            <Card maxW='sm' padding={15} className='m-auto'>
                             <CardBody>
                                     <Stack  className='m-auto' >
                                         <Heading size='md' color='blue.700'>{data.title}</Heading>

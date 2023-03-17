@@ -1,26 +1,29 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-
 const initialState = {
     loading: false,
     products: [],
-    error: ' '
+    error: ' ',
+    totalProduct :100 ,
+    skip :0 ,
+
 };
 
-
-
-export const fetchProducts = createAsyncThunk("products/fetchProducts", () => {
-    return axios.get("https://dummyjson.com/products?limit=8")
+export const fetchProducts = createAsyncThunk("products/fetchProducts", (skip=0) => {
+    
+    return axios.get(`https://dummyjson.com/products?limit=8&skip=${skip} `)
         .then((response) => response.data)
-
-
 })
-
 
 const ProductSlice = createSlice({
     name: 'products',
     initialState,
+    reducers : {
+        paginationData :(state,action)=>{
+            state.skip =action.payload
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchProducts.pending, (state) => {
             state.loading = true
@@ -38,3 +41,4 @@ const ProductSlice = createSlice({
 })
 
 export default ProductSlice.reducer;
+export const {paginationData}  =ProductSlice.actions

@@ -24,21 +24,24 @@ export const ProductCard = () => {
         <div className='container-fluid'>
             <div className="row  ">
                 {
-                    productsData.products ? productsData.products.map((data) => {
+                    productsData.products ? productsData.products.map((data,index) => {
                         if (data === undefined) {
                             return loading
                         }
                         return (
                             <Col sm={12} md={6} lg={4} xl={3} className='p-2 ' >
-                                <Card style={{ height: '620px' }} className='my-3  bg-light '  >
-                                    <Card.Header  >
+                                <Card style={{ height: '640px' }} className='my-3  bg-light '  >
+                                    <Card.Header  className='p-0'>
                                         <img src={data.thumbnail} style={{ height: '250px', margin: 'auto' }} alt="" />
-                                        <div className='d-flex justify-content-between align-items-center mt-3 '>
+                                        
+
+                                    </Card.Header>
+                                    <Card.Header  >
+                                    <div className='d-flex justify-content-between align-items-center mt-3 '>
                                             <Card.Title >{data.title}</Card.Title>
                                             <Button variant="light" className='ms-3  '>{data.price} $  </Button>
                                         </div>
-
-                                    </Card.Header>
+                                        </Card.Header>
                                     <Card.Body>
                                         <Card.Title>{data.brand}</Card.Title>
                                         <Card.Text>
