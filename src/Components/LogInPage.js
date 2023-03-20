@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Flex,
     Box,
@@ -16,60 +16,53 @@ import {
     Field,
     ErrorMessage,
 } from 'formik';
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { decryptedText } from '../utils/cipher';
+import { logInPageValidationSchema } from '../Constants/validation'
 
 
-// logic to validateemail  and password
-const validationSchema = Yup.object().shape({
-    email: Yup.string()
-        .email('invalid email Format')
-        .required('email is required'),
-    password: Yup
-        .string()
-        .required("please enter password")
-        .matches(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-            "Must Contain atleast 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-        )
-})
 
 export const LogInPage = () => {
     const navigate = useNavigate();
+    // let isLogin = JSON.parse(localStorage.getItem("isLogin"));
+
+    // useEffect(() => {
+    //     if (isLogin) {
+    //         navigate('/home')
+    //     }
+    // }, [isLogin])
 
     const initialValues = {
-        email: '',
-        password: '',
+        email: 'd@gmail.com',
+        password: 'D@a12345678',
     }
     const onSubmit = (values) => {
-
-        const data = localStorage.getItem("signUpData");
-        const logInData = JSON.parse(data);
+        const logInData = JSON.parse(localStorage.getItem("signUpData"));
         logInData.map((item) => {
             if (item.email === values.email) {
                 const decryptPassword = decryptedText(item.password);
                 if (decryptPassword === values.password) {
-                    toast.success('logged in successfully');
+                    localStorage.setItem('isLogin', true)
                     navigate('/home')
+                    toast.success('logged in successfully');
                 }
                 else {
                     toast.error('Invalid Password')
                 }
             } else {
-                toast.error('Invalid email')
+                toast.error('Invalid Credentials')
             }
-        });
-
+        })
 
     }
     return (
         <div>
             <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchema}
+                validationSchema={logInPageValidationSchema}
                 onSubmit={onSubmit}
             >
                 <Form>
@@ -114,7 +107,7 @@ export const LogInPage = () => {
                                         <Stack pt={6}>
                                             <Text align={'center'}>
 
-                                                don't have a account ? <Link to='/' color={'blue.400'} > Sign Up</Link>
+                                                don't have a account ? <Link to='/signup' color={'blue.400'} > Sign Up</Link>
                                             </Text>
                                         </Stack>
                                     </Stack>

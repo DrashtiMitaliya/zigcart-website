@@ -17,49 +17,23 @@ import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import * as Yup from 'yup';
-import CryptoJS from "crypto-js";
 import { BsEyeFill } from 'react-icons/bs'
 import { BsEyeSlashFill } from 'react-icons/bs'
 import { toast } from 'react-hot-toast';
 import { encryptedText } from '../utils/cipher';
-
-
-// logic to validate firstName,LastName ,mobile Number ,email  and password
-const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required('First Name is Required'),
-    lastName: Yup.string().required('Last Name is Required'),
-    email: Yup.string()
-        .email('invalid email Format')
-        .required('email is required'),
-    phoneNumber: Yup
-        .string()
-        .matches(/^[0-9]+$/, "Mobile number can only contain numeric characters")
-        .min(10, "Mobile number must be at least 10 digits")
-        .max(12, "Mobile number cannot be more than 12 digits")
-        .required("Mobile Number is required"),
-    password: Yup
-        .string()
-        .required("please enter password")
-        .matches(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-            "Must Contain atleast 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-        ),
-    confirmPassword: Yup
-        .string()
-        .oneOf([Yup.ref("password"), null], "Password is not match"),
-})
+import { signUpvalidationSchema } from '../Constants/validation';
 
 
 export const SignUpPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const initialValues = {
-        firstName: '',
-        lastName: '',
-        email: '',
+        firstName: 'Drashti',
+        lastName: 'M',
+        email: 'd@gmail.com',
         phoneNumber: '',
-        password: '',
+        password: 'D@a12345678',
         isActive: false,
-        confirmPassword: ''
+        confirmPassword: 'D@a12345678'
 
     }
     const navigate = useNavigate()
@@ -94,7 +68,7 @@ export const SignUpPage = () => {
             {/* code of signup page */}
             <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchema}
+                validationSchema={signUpvalidationSchema}
                 onSubmit={onSubmit}
 
             >

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchProducts } from '../features/productSlice'
+import { fetchProducts } from '../Redux/Reducers/ProductSlice'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/esm/Button';
@@ -25,7 +25,7 @@ export const ProductCard = () => {
         <div className='container-fluid'>
             <div className="row  ">
                 {
-                    productsData.products ? productsData.products.map((data,index) => {
+                    productsData.products ? productsData.products.map((data) => {
                         if (data === undefined) {
                             return (
                                 <div className=' d-flex justify-content-center'><RotatingLines

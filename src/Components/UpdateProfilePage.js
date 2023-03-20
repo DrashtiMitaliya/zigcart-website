@@ -11,30 +11,17 @@ import {
 import * as Yup from 'yup';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { updateProfileValidations } from '../Constants/validation'
 
 // logic to validate firstName,LastName ,email  and password
-const validationSchema = Yup.object({
-    firstName: Yup.string().required('First Name is Required'),
-    lastName: Yup.string().required('Last Name is Required'),
-    email: Yup.string()
-        .email('invalid email Format')
-        .required('email is required'),
-    phoneNumber: Yup
-        .string()
-        .matches(/^[0-9]+$/, "Mobile number can only contain numeric characters")
-        .min(10, "Mobile number must be at least 10 digits")
-        .max(12, "Mobile number cannot be more than 12 digits")
-        .required("Mobile Number is required"),
-
-})
 
 export const UpdateProfilePage = () => {
 
-    const navigate =useNavigate()
-    const userProfileData = JSON.parse(localStorage.getItem('signUpData')) ;
-    const currentUserData = userProfileData.find((item)=>{
+    const navigate = useNavigate()
+    const userProfileData = JSON.parse(localStorage.getItem('signUpData'));
+    const currentUserData = userProfileData.find((item) => {
         return item.isActive === true
-        
+
     })
 
     const initialValues = {
@@ -44,22 +31,23 @@ export const UpdateProfilePage = () => {
         phoneNumber: currentUserData.phoneNumber,
     }
     const onSubmit = (values) => {
-        const userProfileData = JSON.parse(localStorage.getItem('signUpData')) ;
+        const userProfileData = JSON.parse(localStorage.getItem('signUpData'));
 
-        let index =userProfileData.findIndex(item=> item.isActive===true)
-      
-        if (userProfileData.some(item => item.email === values.email)) {
-            toast.error('oops! this email is already exists plz enter another email')
-        }else{
-            userProfileData[index].email = values.email
-            userProfileData[index].firstName = values.firstName
-            userProfileData[index].lastName = values.lastName
-            userProfileData[index].phoneNumber = values.phoneNumber
-            localStorage.setItem('signUpData',JSON.stringify(userProfileData))
-             toast.success('Profile Page Updated Successfully !')
-        }   
+        let index = userProfileData.findIndex(item => item.isActive === true)
 
-        
+        if (userProfileData[index].email !== currentUserData) {
+            if (userProfileData.some(item => item.email === values.email)) {
+                toast.error('oops! this email is already exists plz enter another email')
+            } else {
+                userProfileData[index].email = values.email
+                userProfileData[index].firstName = values.firstName
+                userProfileData[index].lastName = values.lastName
+                userProfileData[index].phoneNumber = values.phoneNumber
+                localStorage.setItem('signUpData', JSON.stringify(userProfileData))
+                toast.success('Profile Page Updated Successfully !')
+
+            }
+        }
 
     }
 
@@ -67,7 +55,7 @@ export const UpdateProfilePage = () => {
         // code of update profile page
         <Formik
             initialValues={initialValues}
-            validationSchema={validationSchema}
+            validationSchema={updateProfileValidations}
             onSubmit={onSubmit}
         >
             <Form >
