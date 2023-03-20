@@ -23,7 +23,10 @@ export const ChangePasswordPage = () => {
         .oneOf([Yup.ref("password"), null], "Password is not match"),
     })
     const onSubmit = (values)=>{
-        localStorage.setItem("Password Data",JSON.stringify(values))
+        
+        const passwordData = JSON.parse(localStorage.getItem('signUpData'))
+     
+     
     }
     return (
        
@@ -38,7 +41,7 @@ export const ChangePasswordPage = () => {
                         align={'center'}
                         justify={'center'}
                         bg={useColorModeValue('gray.50', 'gray.800')}>
-                        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} className='w-50'>
+                        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} >
                             <Stack align={'center'}>
                                 <Heading fontSize={'4xl'}>Edit Password</Heading>
 

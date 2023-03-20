@@ -9,13 +9,13 @@ const initialState = {
     skip :0 ,
 
 };
-
+// fetch data from api 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", (skip=0) => {
-    
     return axios.get(`https://dummyjson.com/products?limit=8&skip=${skip} `)
         .then((response) => response.data)
 })
 
+// create action and reducers(to dispatch an action)
 const ProductSlice = createSlice({
     name: 'products',
     initialState,
