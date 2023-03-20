@@ -12,6 +12,7 @@ import { MdDiscount } from 'react-icons/md';
 import { RotatingLines } from 'react-loader-spinner';
 import { PageNav } from './PageNav';
 
+
 export const ProductCard = () => {
     
     const productsData = useSelector((state) => state.products.products)
@@ -26,7 +27,16 @@ export const ProductCard = () => {
                 {
                     productsData.products ? productsData.products.map((data,index) => {
                         if (data === undefined) {
-                            return loading
+                            return (
+                                <div className=' d-flex justify-content-center'><RotatingLines
+                                strokeColor="grey"
+                                strokeWidth="5"
+                                animationDuration="0.75"
+                                width="96"
+                                visible={true}
+    
+                            /> </div>
+                            )
                         }
                         return (
                             <Col sm={12} md={6} lg={4} xl={3} className='p-2 ' >

@@ -30,7 +30,7 @@ const ProductSlice = createSlice({
         })
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
             state.loading = false,
-                state.products = action.payload
+            state.products = action.payload
         })
         builder.addCase(fetchProducts.rejected, (state, action) => {
             state.loading = false
