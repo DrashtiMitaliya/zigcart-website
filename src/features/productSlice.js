@@ -29,13 +29,16 @@ const ProductSlice = createSlice({
             state.loading = true
         })
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
-            state.loading = false,
-            state.products = action.payload
+           
+            state.loading = false;
+            state.products = action.payload;
+            state.error=""
         })
         builder.addCase(fetchProducts.rejected, (state, action) => {
-            state.loading = false
-            state.products = []
-            state.error = action.error.message
+          
+            state.loading = false;
+            state.products = [];
+            state.error = action.error.message;
         })
     }
 })
