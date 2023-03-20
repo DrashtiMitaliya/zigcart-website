@@ -27,13 +27,13 @@ import { signUpvalidationSchema } from '../Constants/validation';
 export const SignUpPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const initialValues = {
-        firstName: 'Drashti',
-        lastName: 'M',
-        email: 'd@gmail.com',
+        firstName: '',
+        lastName: '',
+        email: '',
         phoneNumber: '',
-        password: 'D@a12345678',
+        password: '',
         isActive: false,
-        confirmPassword: 'D@a12345678'
+        confirmPassword: ''
 
     }
     const navigate = useNavigate()

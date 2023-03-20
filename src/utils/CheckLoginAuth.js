@@ -7,10 +7,10 @@ const checkLoginAuth = (values) => {
     let isLogin = false;
     let isUser = false
     isUser = logInData.some((item) => item.email === values.email && decryptedText(item.password) === values.password);
-
+    
     if (!isUser) {
-        toast.error('Invalid Credentials')
         isLogin = false;
+        toast.error('Invalid Credentials')
     } else {
         const temp = logInData.map((item) => {
             if (item.email === values.email && decryptedText(item.password) === values.password) {

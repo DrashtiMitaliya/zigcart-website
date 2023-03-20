@@ -1,6 +1,5 @@
 import { Heading } from '@chakra-ui/react';
 import React from 'react';
-import { useState } from 'react';
 import { Button, Flex, useColorModeValue, Stack, Box, } from '@chakra-ui/react';
 import {
     Formik,
@@ -8,19 +7,13 @@ import {
     Field,
     ErrorMessage,
 } from 'formik';
-import * as Yup from 'yup';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 import { updateProfileValidations } from '../Constants/validation'
 
-// logic to validate firstName,LastName ,email  and password
-
 export const UpdateProfilePage = () => {
-
-    const navigate = useNavigate()
     const userProfileData = JSON.parse(localStorage.getItem('signUpData'));
     const currentUserData = userProfileData.find((item) => item.isActive === true)
-    console.log(currentUserData);
+    
     const initialValues = {
         firstName: currentUserData.firstName,
         lastName: currentUserData.lastName,
@@ -35,7 +28,7 @@ export const UpdateProfilePage = () => {
         if (userProfileData[index].email !== currentUserData) {
             if (userProfileData.some(item => item.email === values.email)) {
                 toast.error('oops! this email is already exists plz enter another email')
-            } else {
+            }  else {
                 userProfileData[index].email = values.email
                 userProfileData[index].firstName = values.firstName
                 userProfileData[index].lastName = values.lastName

@@ -17,13 +17,10 @@ import {
     ErrorMessage,
 } from 'formik';
 import { Link } from 'react-router-dom';
-import * as Yup from 'yup';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { decryptedText } from '../utils/cipher';
 import { logInPageValidationSchema } from '../Constants/validation'
 import checkLoginAuth from '../utils/CheckLoginAuth';
-
 
 
 export const LogInPage = () => {
@@ -37,8 +34,8 @@ export const LogInPage = () => {
     }, [isLogin])
 
     const initialValues = {
-        email: 'd@gmail.com',
-        password: 'D@a12345678',
+        email: '',
+        password: '',
     }
     const onSubmit = (values) => {
         if (checkLoginAuth(values)) {

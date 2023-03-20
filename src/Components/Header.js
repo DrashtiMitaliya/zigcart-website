@@ -9,7 +9,7 @@ import { RiLockPasswordFill } from 'react-icons/ri';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
-// verify user credentials (which is already created their account) 
+// verify user credentials (which has already created their account) 
 export const Header = () => {
   const [isActive, setIsActive] = useState(JSON.parse(localStorage.getItem('isLogin')))
   const location = useLocation()
