@@ -41,8 +41,8 @@ export const LogInPage = () => {
     const navigate = useNavigate();
 
     const initialValues = {
-        email: 'd@gmail.com',
-        password: 'Abcd123*',
+        email: '',
+        password: '',
     }
     const onSubmit = (values) => {
 

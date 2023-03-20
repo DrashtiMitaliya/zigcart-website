@@ -53,13 +53,13 @@ const validationSchema = Yup.object().shape({
 export const SignUpPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const initialValues = {
-        firstName: 'Drashti',
-        lastName: 'Mitaliya',
-        email: 'd@gmail.com',
-        phoneNumber: '1234567890',
-        password: 'Abcd123*',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        password: '',
         isActive: false,
-        confirmPassword: 'Abcd123*'
+        confirmPassword: ''
 
     }
     const navigate = useNavigate()
