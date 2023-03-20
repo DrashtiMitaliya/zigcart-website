@@ -22,40 +22,30 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { decryptedText } from '../utils/cipher';
 import { logInPageValidationSchema } from '../Constants/validation'
+import checkLoginAuth from '../utils/CheckLoginAuth';
 
 
 
 export const LogInPage = () => {
     const navigate = useNavigate();
-    // let isLogin = JSON.parse(localStorage.getItem("isLogin"));
+    let isLogin = JSON.parse(localStorage.getItem("isLogin"));
 
-    // useEffect(() => {
-    //     if (isLogin) {
-    //         navigate('/home')
-    //     }
-    // }, [isLogin])
+    useEffect(() => {
+        if (isLogin) {
+            navigate('/home')
+        }
+    }, [isLogin])
 
     const initialValues = {
         email: 'd@gmail.com',
         password: 'D@a12345678',
     }
     const onSubmit = (values) => {
-        const logInData = JSON.parse(localStorage.getItem("signUpData"));
-        logInData.map((item) => {
-            if (item.email === values.email) {
-                const decryptPassword = decryptedText(item.password);
-                if (decryptPassword === values.password) {
-                    localStorage.setItem('isLogin', true)
-                    navigate('/home')
-                    toast.success('logged in successfully');
-                }
-                else {
-                    toast.error('Invalid Password')
-                }
-            } else {
-                toast.error('Invalid Credentials')
-            }
-        })
+        if (checkLoginAuth(values)) {
+            navigate('/home')
+            toast.success('logged in successfully');
+            localStorage.setItem('isLogin', true)
+        }
 
     }
     return (

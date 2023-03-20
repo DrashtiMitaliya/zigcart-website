@@ -19,11 +19,8 @@ export const UpdateProfilePage = () => {
 
     const navigate = useNavigate()
     const userProfileData = JSON.parse(localStorage.getItem('signUpData'));
-    const currentUserData = userProfileData.find((item) => {
-        return item.isActive === true
-
-    })
-
+    const currentUserData = userProfileData.find((item) => item.isActive === true)
+    console.log(currentUserData);
     const initialValues = {
         firstName: currentUserData.firstName,
         lastName: currentUserData.lastName,
