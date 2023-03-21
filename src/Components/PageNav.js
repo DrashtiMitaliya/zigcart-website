@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../Redux/Reducers/ProductSlice';
 
-
+// pagination 
 export const PageNav = () => {
   const [activePage, setActivePage] = useState(0)
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const PageNav = () => {
 
   useEffect(() => {
     dispatch(fetchProducts((activePage) * 8))
-  }, [activePage])
+  }, [activePage, dispatch])
 
   for (let number = 0; number <= (totalProduct) / 8; number++) {
     items.push(

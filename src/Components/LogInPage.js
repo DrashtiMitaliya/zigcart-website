@@ -31,7 +31,7 @@ export const LogInPage = () => {
         if (isLogin) {
             navigate('/home')
         }
-    }, [isLogin])
+    }, [isLogin,navigate])
 
     const initialValues = {
         email: '',
@@ -43,7 +43,6 @@ export const LogInPage = () => {
             toast.success('logged in successfully');
             localStorage.setItem('isLogin', true)
         }
-
     }
     return (
         <div>
@@ -52,6 +51,7 @@ export const LogInPage = () => {
                 validationSchema={logInPageValidationSchema}
                 onSubmit={onSubmit}
             >
+               { /* This is the LogIn form  */}
                 <Form>
                     <Flex
                         minH={'80vh'}

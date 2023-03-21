@@ -29,6 +29,7 @@ export const Header = () => {
   }, [location])
 
   return (
+    
     // code of Navbar which has home , user profile , logout and change password features
     <div>
       <Navbar bg="light" variant="light" className='flex-wrap flex-column'>

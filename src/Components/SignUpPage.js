@@ -16,7 +16,6 @@ import {
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import * as Yup from 'yup';
 import { BsEyeFill } from 'react-icons/bs'
 import { BsEyeSlashFill } from 'react-icons/bs'
 import { toast } from 'react-hot-toast';
@@ -38,6 +37,7 @@ export const SignUpPage = () => {
     }
     const navigate = useNavigate()
     const onSubmit = (values) => {
+
         // check if local storage is empty then push data (Array of object ) into them otherwise compare local storage data with user data and allow user to sign in
         values.password = encryptedText(values.password)
         values.confirmPassword = encryptedText(values.confirmPassword)
@@ -58,9 +58,6 @@ export const SignUpPage = () => {
             toast.success('account created successfully')
             navigate('/home')
         }
-
-
-
     }
 
     return (

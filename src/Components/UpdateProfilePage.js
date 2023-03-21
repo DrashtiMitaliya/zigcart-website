@@ -10,16 +10,26 @@ import {
 import { toast } from 'react-hot-toast';
 import { updateProfileValidations } from '../Constants/validation'
 
+
 export const UpdateProfilePage = () => {
+
     const userProfileData = JSON.parse(localStorage.getItem('signUpData'));
     const currentUserData = userProfileData.find((item) => item.isActive === true)
-    
+
+    /* Setting the initial values of the form. */
+
     const initialValues = {
         firstName: currentUserData.firstName,
         lastName: currentUserData.lastName,
         email: currentUserData.email,
         phoneNumber: currentUserData.phoneNumber,
     }
+
+
+    // It takes the values from the form and checks if the email is already exists in the local storage
+    //      or not. If it exists then it shows an error message and if it doesn't exist then it updates the
+    //      profile with the new values
+
     const onSubmit = (values) => {
         const userProfileData = JSON.parse(localStorage.getItem('signUpData'));
 

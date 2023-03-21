@@ -1,28 +1,25 @@
 import React from 'react';
 import { Heading, Flex, useColorModeValue, Box, Stack, Button } from '@chakra-ui/react';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
-import * as Yup from 'yup';
 import { decryptedText, encryptedText } from '../utils/cipher';
 import { toast } from 'react-hot-toast';
 import { changePasswordValidations } from '../Constants/validation';
-import { useNavigate } from 'react-router-dom';
-
 
 export const ChangePasswordPage = () => {
     const initialValues = {
         password: '',
         confirmPassword: ''
-
     }
 
     const onSubmit = (values) => {
 
+        /* This is the code for changing the password. */
         const passwordData = JSON.parse(localStorage.getItem('signUpData'))
         const currentUserData = passwordData.find(item => item.isActive === true)
         if (decryptedText(currentUserData.password) !== values.password) {
             toast.error('Password is invalid. Please try again.')
         } else if (decryptedText(currentUserData.password) === values.confirmPassword) {
-            toast.error('Old password and new password are not be the same')
+            toast.error('Old password and new password are can not be the same')
         } else {
             const temp = passwordData.map(item => {
                 if (item.isActive === true) {

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchProducts } from '../Redux/Reducers/ProductSlice'
 import Card from 'react-bootstrap/Card';
@@ -12,52 +11,54 @@ import { MdDiscount } from 'react-icons/md';
 import { RotatingLines } from 'react-loader-spinner';
 import { PageNav } from './PageNav';
 
-
 export const ProductCard = () => {
-    
+
     const productsData = useSelector((state) => state.products.products)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchProducts())
-    }, [])
+    }, [dispatch])
     return (
 
+      /* A React component that renders a card for each product in the products array. */
         <div className='container-fluid'>
             <div className="row  ">
                 {
-                    productsData.products ? productsData.products.map((data) => {
-                        if (data === undefined) {
+                    productsData.products ? productsData.products.map((data, index) => {
+                        if (data === undefined ) {
                             return (
-                                <div className=' d-flex justify-content-center'><RotatingLines
-                                strokeColor="grey"
-                                strokeWidth="5"
-                                animationDuration="0.75"
-                                width="96"
-                                visible={true}
-    
-                            /> </div>
+                                <div key={index} className=' d-flex justify-content-center'><RotatingLines
+        
+                                    strokeColor="grey"
+                                    strokeWidth="5"
+                                    animationDuration="0.75"
+                                    width="96"
+                                    visible={true}
+
+                                /> </div>
                             )
                         }
                         return (
+                          
                             <Col sm={12} md={6} lg={4} xl={3} className='p-2 ' >
-                                <Card style={{ height: '640px' }} className='my-3  bg-light '  >
-                                    <Card.Header  className='p-0'>
+                                <Card style={{ height: '680px' }} className='my-3  bg-light '  >
+                                    <Card.Header className='p-0'>
                                         <img src={data.thumbnail} style={{ height: '250px', margin: 'auto' }} alt="" />
-                                        
+
 
                                     </Card.Header>
                                     <Card.Header  >
-                                    <div className='d-flex justify-content-between align-items-center mt-3 '>
+                                        <div className='d-flex justify-content-between align-items-center mt-3 '>
                                             <Card.Title >{data.title}</Card.Title>
                                             <Button variant="light" className='ms-3  '>{data.price} $  </Button>
                                         </div>
-                                        </Card.Header>
+                                    </Card.Header>
                                     <Card.Body>
                                         <Card.Title>{data.brand}</Card.Title>
                                         <Card.Text>
                                             {data.description}
                                         </Card.Text>
-                                        <div className='d-flex justify-content-center my-3'>
+                                        <div className='d-flex justify-content-center my-3 '>
                                             <Button variant="secondary" className='ms-3 d-flex align-items-center  '>{data.stock} <AiOutlineStock />  </Button>
                                             <Button variant="warning" className='ms-3 d-flex align-items-center  '>{data.rating} <AiFillStar />  </Button>
                                         </div>
@@ -75,6 +76,7 @@ export const ProductCard = () => {
 
                         )
                     }) :
+                     /* A loading spinner. */
                         <div className=' d-flex justify-content-center'><RotatingLines
                             strokeColor="grey"
                             strokeWidth="5"

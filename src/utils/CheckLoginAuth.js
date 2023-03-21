@@ -1,7 +1,10 @@
 import { decryptedText } from "./cipher";
+import { toast } from 'react-hot-toast'
 
 const logInData = JSON.parse(localStorage.getItem("signUpData"));
 
+
+ /* It checks user log in credentials and if credentials is correct then redirect user to home page otherwise show error that given crendentials is wrong*/
 
 const checkLoginAuth = (values) => {
     let isLogin = false;
@@ -18,7 +21,7 @@ const checkLoginAuth = (values) => {
             }
             return item
         })
-        
+
         localStorage.setItem('signUpData', JSON.stringify(temp))
         isLogin = true;
     }

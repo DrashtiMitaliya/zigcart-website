@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {GrLinkPrevious} from 'react-icons/gr'
+import { GrLinkPrevious } from 'react-icons/gr'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
@@ -14,24 +14,26 @@ export const ProductDetails = () => {
     useEffect(() => {
         axios.get(`https://dummyjson.com/products/${productId}`)
             .then((response) => setData(response.data))
-    }, [])
+    }, [productId])
 
     return (
 
         <div>
             {data.images ?
+                /* The code that displays the products all details. */
                 <div className='container '>
                     <div >
                         <Link to='/home'><Button variant='bold' colorScheme='light' >
-                           <GrLinkPrevious/>
+                            <GrLinkPrevious />
                         </Button></Link>
                     </div>
                     <div className="row mt-5 ">
                         <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 m-auto">
                             <Carousel>
-                                {data.images.map(id => {
+                                {data.images.map((id) => {
                                     return <Carousel.Item>
-                                        <img
+                                        <img    
+                                            
                                             className="d-block w-100"
                                             src={id}
                                             alt="First slide"
@@ -95,6 +97,7 @@ export const ProductDetails = () => {
                 </div>
                 :
 
+                /* A spinner(loading) that is displayed when the data is being fetched from the API. */
                 <div className=' d-flex justify-content-center'><RotatingLines
                     strokeColor="grey"
                     strokeWidth="5"
