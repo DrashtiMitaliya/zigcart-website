@@ -1,19 +1,25 @@
+// import from packages
+import { toast } from 'react-hot-toast';
+
+// import from files
+import { Messages } from "../Constants/Messages";
 import { decryptedText } from "./cipher";
-import { toast } from 'react-hot-toast'
+
+
+/* It checks user log in credentials and if credentials is correct then redirect user to home page otherwise show error that given crendentials is wrong*/
 
 const logInData = JSON.parse(localStorage.getItem("signUpData"));
-
-
- /* It checks user log in credentials and if credentials is correct then redirect user to home page otherwise show error that given crendentials is wrong*/
+console.log(logInData)
 
 const checkLoginAuth = (values) => {
     let isLogin = false;
-    let isUser = false
-    isUser = logInData.some((item) => item.email === values.email && decryptedText(item.password) === values.password);
-    
+    let isUser = false;
+    isUser = logInData.some((item) => (item.email === values.email) && ((decryptedText(item.password)) === values.password));
+    console.log(isUser)
+
     if (!isUser) {
         isLogin = false;
-        toast.error('Invalid Credentials')
+        toast.error(Messages.LogIn_Failed)
     } else {
         const temp = logInData.map((item) => {
             if (item.email === values.email && decryptedText(item.password) === values.password) {

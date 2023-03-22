@@ -1,7 +1,10 @@
-import Pagination from 'react-bootstrap/Pagination';
+// import from packages
 import React, { useState, useEffect } from 'react';
+import Pagination from 'react-bootstrap/Pagination';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts } from '../Redux/Reducers/ProductSlice';
+
+// import from files
+import { fetchProducts } from '../../Redux/Reducers/ProductSlice';
 
 // pagination 
 export const PageNav = () => {

@@ -1,9 +1,13 @@
+// import from packages
 import React from 'react';
 import { Heading, Flex, useColorModeValue, Box, Stack, Button } from '@chakra-ui/react';
-import { Formik, Form, ErrorMessage, Field } from 'formik';
-import { decryptedText, encryptedText } from '../utils/cipher';
 import { toast } from 'react-hot-toast';
-import { changePasswordValidations } from '../Constants/validation';
+import { Formik, Form, ErrorMessage, Field } from 'formik';
+
+// import from files
+import { decryptedText, encryptedText } from '../../utils/cipher';
+import { changePasswordValidations } from '../../Constants/validation';
+import { Messages } from '../../Constants/Messages';
 
 export const ChangePasswordPage = () => {
     const initialValues = {
@@ -16,10 +20,10 @@ export const ChangePasswordPage = () => {
         /* This is the code for changing the password. */
         const passwordData = JSON.parse(localStorage.getItem('signUpData'))
         const currentUserData = passwordData.find(item => item.isActive === true)
-        if (decryptedText(currentUserData.password) !== values.password) {
-            toast.error('Password is invalid. Please try again.')
-        } else if (decryptedText(currentUserData.password) === values.confirmPassword) {
-            toast.error('Old password and new password are can not be the same')
+        if (decryptedText(currentUserData.password) !== (values.password)) {
+            toast.error(Messages.InValid_Password)
+        } else if (decryptedText(currentUserData.password) === (values.confirmPassword)) {
+            toast.error(Messages.Same_Password)
         } else {
             const temp = passwordData.map(item => {
                 if (item.isActive === true) {
@@ -28,7 +32,7 @@ export const ChangePasswordPage = () => {
                 }
                 return item
             })
-            toast.success('password changed successfully')
+            toast.success(Messages.Successful_Change_Password)
             localStorage.setItem('signUpData', JSON.stringify(temp))
         }
 

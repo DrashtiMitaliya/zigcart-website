@@ -1,5 +1,5 @@
+// import from packages
 import { Link } from 'react-router-dom';
-import { fetchProducts } from '../Redux/Reducers/ProductSlice'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/esm/Button';
@@ -9,10 +9,12 @@ import { AiFillStar } from 'react-icons/ai';
 import { AiOutlineStock } from 'react-icons/ai';
 import { MdDiscount } from 'react-icons/md';
 import { RotatingLines } from 'react-loader-spinner';
-import { PageNav } from './PageNav';
+import { PageNav } from '../Pagination/PageNav';
+
+// import from files
+import { fetchProducts } from '../../Redux/Reducers/ProductSlice';
 
 export const ProductCard = () => {
-
     const productsData = useSelector((state) => state.products.products)
     const dispatch = useDispatch()
     useEffect(() => {

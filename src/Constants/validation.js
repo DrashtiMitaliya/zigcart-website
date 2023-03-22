@@ -1,10 +1,11 @@
+// import from packages
 import * as Yup from 'yup';
 
 // change Password validation schema
 export const changePasswordValidations = Yup.object().shape({
     password: Yup
             .string()
-            .required("please enter password")
+            .required('please enter password')
             .matches(
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
                 "Must Contain atleast 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"

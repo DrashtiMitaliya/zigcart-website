@@ -1,3 +1,4 @@
+// import from packages
 import React, { useEffect } from 'react';
 import {
     Flex,
@@ -18,9 +19,12 @@ import {
 } from 'formik';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+
+// import from files
 import { useNavigate } from 'react-router-dom';
-import { logInPageValidationSchema } from '../Constants/validation'
-import checkLoginAuth from '../utils/CheckLoginAuth';
+import { logInPageValidationSchema } from '../../Constants/validation'
+import checkLoginAuth from '../../utils/CheckLoginAuth';
+import { Messages } from '../../Constants/Messages';
 
 
 export const LogInPage = () => {
@@ -38,11 +42,16 @@ export const LogInPage = () => {
         password: '',
     }
     const onSubmit = (values) => {
+        console.log(values)
         if (checkLoginAuth(values)) {
-            navigate('/home')
-            toast.success('logged in successfully');
             localStorage.setItem('isLogin', true)
+            toast.success(Messages.LogIn_Successfully);
+            navigate('/home')
         }
+        else{
+            toast.error(Messages.Invalid_user)
+        }
+       
     }
     return (
         <div>

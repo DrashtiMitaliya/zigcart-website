@@ -1,5 +1,6 @@
-import { Heading } from '@chakra-ui/react';
+// import from packages
 import React from 'react';
+import { Heading } from '@chakra-ui/react';
 import { Button, Flex, useColorModeValue, Stack, Box, } from '@chakra-ui/react';
 import {
     Formik,
@@ -8,8 +9,10 @@ import {
     ErrorMessage,
 } from 'formik';
 import { toast } from 'react-hot-toast';
-import { updateProfileValidations } from '../Constants/validation'
 
+// import from files
+import { updateProfileValidations } from '../../Constants/validation'
+import { Messages } from '../../Constants/Messages';
 
 export const UpdateProfilePage = () => {
 
@@ -17,7 +20,6 @@ export const UpdateProfilePage = () => {
     const currentUserData = userProfileData.find((item) => item.isActive === true)
 
     /* Setting the initial values of the form. */
-
     const initialValues = {
         firstName: currentUserData.firstName,
         lastName: currentUserData.lastName,
@@ -37,14 +39,14 @@ export const UpdateProfilePage = () => {
 
         if (userProfileData[index].email !== currentUserData) {
             if (userProfileData.some(item => item.email === values.email)) {
-                toast.error('oops! this email is already exists plz enter another email')
+                toast.error(Messages.AlreadyExists_Mail)
             }  else {
                 userProfileData[index].email = values.email
                 userProfileData[index].firstName = values.firstName
                 userProfileData[index].lastName = values.lastName
                 userProfileData[index].phoneNumber = values.phoneNumber
                 localStorage.setItem('signUpData', JSON.stringify(userProfileData))
-                toast.success('Profile Page Updated Successfully !')
+                toast.success(Messages.ProfilePage_Update)
 
             }
         }

@@ -1,3 +1,4 @@
+// import from packages
 import React from 'react';
 import {
     Flex,
@@ -19,9 +20,11 @@ import { useState } from 'react';
 import { BsEyeFill } from 'react-icons/bs'
 import { BsEyeSlashFill } from 'react-icons/bs'
 import { toast } from 'react-hot-toast';
-import { encryptedText } from '../utils/cipher';
-import { signUpvalidationSchema } from '../Constants/validation';
 
+// import from files
+import { encryptedText } from '../../utils/cipher';
+import { signUpvalidationSchema } from '../../Constants/validation';
+import { Messages } from '../../Constants/Messages';
 
 export const SignUpPage = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -37,6 +40,7 @@ export const SignUpPage = () => {
     }
     const navigate = useNavigate()
     const onSubmit = (values) => {
+        console.log(values)
 
         // check if local storage is empty then push data (Array of object ) into them otherwise compare local storage data with user data and allow user to sign in
         values.password = encryptedText(values.password)
@@ -48,14 +52,14 @@ export const SignUpPage = () => {
             signUpData = JSON.parse(localStorage.getItem("signUpData"))
         }
         if (signUpData.some(item => item.email === values.email)) {
-            toast.error('oops! user is already exists')
+            toast.error(Messages.Already_Exists_User)
         }
         else {
             values.isActive = true
             signUpData.push(values)
             localStorage.setItem('signUpData', JSON.stringify(signUpData))
             localStorage.setItem('isLogin', true)
-            toast.success('account created successfully')
+            toast.success(Messages.Successful_SignIn)
             navigate('/home')
         }
     }

@@ -1,3 +1,4 @@
+// import from packages
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -9,13 +10,16 @@ import { RiLockPasswordFill } from 'react-icons/ri';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
+// // import from files
+import { Messages } from '../../Constants/Messages';
+
 // verify user credentials (which has already created their account) 
 export const Header = () => {
   const [isActive, setIsActive] = useState(JSON.parse(localStorage.getItem('isLogin')))
   const location = useLocation()
   const logout = () => {
     localStorage.setItem('isLogin', false)
-    toast.success('log out successfully')
+    toast.success(Messages.LogOut_Account)
     let signUpData = JSON.parse(localStorage.getItem("signUpData"))
     let temp = signUpData.map((item) => {
       item.isActive = false
