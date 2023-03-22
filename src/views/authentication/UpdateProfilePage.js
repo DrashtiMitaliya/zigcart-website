@@ -38,20 +38,20 @@ export const UpdateProfilePage = () => {
         let index = userProfileData.findIndex(item => item.isActive === true)
 
         if (userProfileData[index].email !== currentUserData) {
-            if (userProfileData.some(item => item.email === values.email)) {
-                toast.error(Messages.AlreadyExists_Mail)
-            }  else {
-                userProfileData[index].email = values.email
-                userProfileData[index].firstName = values.firstName
-                userProfileData[index].lastName = values.lastName
-                userProfileData[index].phoneNumber = values.phoneNumber
-                localStorage.setItem('signUpData', JSON.stringify(userProfileData))
-                toast.success(Messages.ProfilePage_Update)
 
-            }
+            userProfileData[index].email = values.email
+            userProfileData[index].firstName = values.firstName
+            userProfileData[index].lastName = values.lastName
+            userProfileData[index].phoneNumber = values.phoneNumber
+            localStorage.setItem('signUpData', JSON.stringify(userProfileData))
+            toast.success(Messages.ProfilePage_Update)
+        }
+            else  {
+                toast.error(Messages.AlreadyExists_Mail)
+            }  
         }
 
-    }
+    
 
     return (
         // code of update profile page

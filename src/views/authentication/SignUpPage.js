@@ -40,8 +40,7 @@ export const SignUpPage = () => {
     }
     const navigate = useNavigate()
     const onSubmit = (values) => {
-        console.log(values)
-
+     
         // check if local storage is empty then push data (Array of object ) into them otherwise compare local storage data with user data and allow user to sign in
         values.password = encryptedText(values.password)
         values.confirmPassword = encryptedText(values.confirmPassword)
