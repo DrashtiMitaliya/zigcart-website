@@ -4,15 +4,22 @@ import * as Yup from 'yup';
 // change Password validation schema
 export const changePasswordValidations = Yup.object().shape({
     password: Yup
-            .string()
-            .required('please enter password')
-            .matches(
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
-                "Must Contain atleast 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-            ),
-        confirmPassword: Yup
-            .string()
-            .oneOf([Yup.ref("confirmPassword"), null], "Password is not match"),
+        .string()
+        .required('please enter password')
+        .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+            "Must Contain atleast 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        ),
+    nPassword: Yup
+        .string()
+        .required('please enter password')
+        .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+            "Must Contain atleast 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        ),
+    confirmPassword: Yup
+        .string()
+        .oneOf([Yup.ref("confirmPassword"), null], "Password is not match"),
 })
 
 // update Profile Page validation schema

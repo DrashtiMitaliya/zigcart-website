@@ -35,23 +35,23 @@ export const LogInPage = () => {
         if (isLogin) {
             navigate('/home')
         }
-    }, [isLogin,navigate])
+    }, [isLogin, navigate])
 
     const initialValues = {
         email: '',
         password: '',
     }
+
     const onSubmit = (values) => {
-        console.log(values)
         if (checkLoginAuth(values)) {
             localStorage.setItem('isLogin', true)
             toast.success(Messages.LogIn_Successfully);
             navigate('/home')
         }
-        else{
+        else {
             toast.error(Messages.Invalid_user)
         }
-       
+
     }
     return (
         <div>
@@ -60,7 +60,7 @@ export const LogInPage = () => {
                 validationSchema={logInPageValidationSchema}
                 onSubmit={onSubmit}
             >
-               { /* This is the LogIn form  */}
+                { /* This is the LogIn form  */}
                 <Form>
                     <Flex
                         minH={'80vh'}

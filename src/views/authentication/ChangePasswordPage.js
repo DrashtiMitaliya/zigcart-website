@@ -12,30 +12,38 @@ import { Messages } from '../../Constants/Messages';
 export const ChangePasswordPage = () => {
     const initialValues = {
         password: '',
+        nPassword: '',
         confirmPassword: ''
     }
 
     const onSubmit = (values) => {
-
         /* This is the code for changing the password. */
         const passwordData = JSON.parse(localStorage.getItem('signUpData'))
         const currentUserData = passwordData.find(item => item.isActive === true)
+
         if (decryptedText(currentUserData.password) !== (values.password)) {
-            toast.error(Messages.InValid_Password)
-        } else if (decryptedText(currentUserData.password) === (values.confirmPassword)) {
-            toast.error(Messages.Same_Password)
+            toast.error(Messages.InValid_Password, {
+                duration: 1000
+            })
+        } else if (decryptedText(currentUserData.password) === (values.nPassword)) {
+            toast.error(Messages.Same_Password, {
+                duration: 1000
+            })
         } else {
             const temp = passwordData.map(item => {
+                console.log(item)
                 if (item.isActive === true) {
-                    item.password = encryptedText(values.password)
+                    item.password = encryptedText(values.nPassword)
                     item.confirmPassword = encryptedText(values.confirmPassword)
                 }
                 return item
             })
-            toast.success(Messages.Successful_Change_Password)
             localStorage.setItem('signUpData', JSON.stringify(temp))
-        }
+            toast.success(Messages.Successful_Change_Password, {
+                duration: 1000
+            })
 
+        }
     }
     return (
 
@@ -70,7 +78,7 @@ export const ChangePasswordPage = () => {
                                 <div className="mb-3">
                                     <label htmlFor="lname" className="form-label"><span className="text-danger fs-5">*</span>New Password </label>
                                     <Field type="password" className="form-control" name='nPassword' />
-                                    <p className='text-danger'><ErrorMessage name='nPpassword' ></ErrorMessage></p>
+                                    <p className='text-danger'><ErrorMessage name='nPassword' ></ErrorMessage></p>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label"> <span className="text-danger fs-5">*</span>Confirm New Password </label>

@@ -8,14 +8,12 @@ import { decryptedText } from "./cipher";
 
 /* It checks user log in credentials and if credentials is correct then redirect user to home page otherwise show error that given crendentials is wrong*/
 
-const logInData = JSON.parse(localStorage.getItem("signUpData"));
-console.log(logInData)
-
 const checkLoginAuth = (values) => {
-    let isLogin = false;
+    if (localStorage.getItem('signUpData') === null) return false
+    const logInData = JSON.parse(localStorage.getItem("signUpData"));
     let isUser = false;
+    let isLogin = false
     isUser = logInData.some((item) => (item.email === values.email) && ((decryptedText(item.password)) === values.password));
-    console.log(isUser)
 
     if (!isUser) {
         isLogin = false;
