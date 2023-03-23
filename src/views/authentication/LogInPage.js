@@ -80,17 +80,19 @@ export const LogInPage = () => {
                                 <Stack spacing={4}>
                                     <FormControl id="email">
                                         <FormLabel>Email address</FormLabel>
-                                        <Field type="email" className="form-control" name='email' />
+                                        <Field  type="email" className="form-control" name='email' id='login-email' />
                                         <p className='text-danger text-start'><ErrorMessage name='email'></ErrorMessage></p>
                                     </FormControl>
                                     <FormControl id="password">
                                         <FormLabel>Password</FormLabel>
-                                        <Field type="password" className="form-control" name='password' />
+                                        <Field type="password" className="form-control" name='password'  id='login-password' />
                                         <p className='text-danger text-start'><ErrorMessage name='password'></ErrorMessage></p>
                                     </FormControl>
                                     <Stack spacing={15}>
 
                                         <Button
+                                        className='error-message'
+                                            id='LogInButton'
                                             type='submit'
                                             bg={'blue.400'}
                                             color={'white'}

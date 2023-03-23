@@ -155,6 +155,7 @@ export const SignUpPage = () => {
                                     </FormControl>
                                     <Stack spacing={10} pt={2}>
                                         <Button
+                                        
                                             type='submit'
                                             loadingText="Submitting"
                                             size="lg"
@@ -162,7 +163,9 @@ export const SignUpPage = () => {
                                             color={'white'}
                                             _hover={{
                                                 bg: 'blue.500',
-                                            }}>
+                                            }}
+                                            id='SignUpButton'
+                                            >
                                             Sign up
                                         </Button>
                                     </Stack>
