@@ -21,10 +21,10 @@ export const UpdateProfilePage = () => {
 
     /* Setting the initial values of the form. */
     const initialValues = {
-        firstName: currentUserData.firstName,
-        lastName: currentUserData.lastName,
-        email: currentUserData.email,
-        phoneNumber: currentUserData.phoneNumber,
+        firstName: '' ,
+        lastName:'' ,
+        email:'',
+        phoneNumber: '',
     }
 
 
@@ -37,21 +37,25 @@ export const UpdateProfilePage = () => {
 
         let index = userProfileData.findIndex(item => item.isActive === true)
 
-        if (userProfileData[index].email !== currentUserData) {
-
-            userProfileData[index].email = values.email
+        if (userProfileData[index].email === currentUserData) {
             userProfileData[index].firstName = values.firstName
             userProfileData[index].lastName = values.lastName
             userProfileData[index].phoneNumber = values.phoneNumber
             localStorage.setItem('signUpData', JSON.stringify(userProfileData))
             toast.success(Messages.ProfilePage_Update)
-        }
-            else  {
+        } else if (userProfileData[index].email !== currentUserData) {
+            if (userProfileData.some(item => item.email === values.email)) {
                 toast.error(Messages.AlreadyExists_Mail)
-            }  
-        }
+            } else {
+                userProfileData[index].email = values.email
 
-    
+                localStorage.setItem('signUpData', JSON.stringify(userProfileData))
+                toast.success(Messages.ProfilePage_Update)
+            }
+        }
+    }
+
+
 
     return (
         // code of update profile page
@@ -80,23 +84,23 @@ export const UpdateProfilePage = () => {
                             <Stack spacing={4}>
                                 <div className="mb-3">
                                     <label htmlFor="fname" className="form-label" ><span className="text-danger fs-5">*</span> First Name</label>
-                                    <Field type="text" className="form-control" aria-describedby="emailHelp" name='firstName' id='' />
+                                    <Field type="text" className="form-control" aria-describedby="emailHelp" name='firstName' id='ProfileFirstName' />
 
                                     <p className='text-danger'><ErrorMessage name='firstName'></ErrorMessage></p>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="lname" className="form-label"><span className="text-danger fs-5">*</span>Last Name </label>
-                                    <Field type="text" className="form-control" aria-describedby="emailHelp" name='lastName' />
+                                    <Field type="text" className="form-control" aria-describedby="emailHelp" name='lastName' id='ProfileLastName' />
                                     <p className='text-danger'><ErrorMessage name='lastName' ></ErrorMessage></p>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label"> <span className="text-danger fs-5">*</span>Email </label>
-                                    <Field type="email" className="form-control" aria-describedby="emailHelp" name='email' />
+                                    <Field type="email" className="form-control" aria-describedby="emailHelp" name='email' id='ProfileEmail' />
                                     <p className='text-danger'> <ErrorMessage name='email'></ErrorMessage></p>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="phoneNumber" className="form-label"><span className="text-danger fs-5">*</span>Phone Number </label>
-                                    <Field type="tel" className="form-control" aria-describedby="emailHelp" name='phoneNumber' />
+                                    <Field type="tel" className="form-control" aria-describedby="emailHelp" name='phoneNumber' id='ProfilePhoneNumber' />
                                     <p className='text-danger text-start'><ErrorMessage name='phoneNumber'></ErrorMessage></p>
                                 </div>
 
@@ -104,6 +108,8 @@ export const UpdateProfilePage = () => {
                             </Stack>
                             <Stack spacing={10} pt={2}>
                                 <Button
+                                    id='ProfileButton'
+
                                     type='submit'
                                     loadingText="Submitting"
                                     size="md"
