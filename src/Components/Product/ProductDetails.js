@@ -1,20 +1,23 @@
 //// import from packages
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+
 import { GrLinkPrevious } from 'react-icons/gr'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import { RotatingLines } from 'react-loader-spinner';
 import { Card, CardBody, Stack, Heading, Text, Divider, Button, ButtonGroup, CardFooter } from '@chakra-ui/react';
-
+import { apiFunction } from '../../api/FetchAPIdata';
 
 export const ProductDetails = () => {
     const { productId } = useParams()
     const [data, setData] = useState([])
     useEffect(() => {
-        axios.get(`https://dummyjson.com/products/${productId}`)
-            .then((response) => setData(response.data))
+      const fetchData = async ()=>{
+        const response = await apiFunction(productId)
+        setData(response)
+      }
+      fetchData()
     }, [productId])
 
     return (
