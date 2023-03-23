@@ -23,7 +23,7 @@ describe('UpdateProfilePage', () => {
     
       })
     
-      it('Update profile page with email address', () => {
+      it('Update profile page with already exist email address', () => {
         cy.window().then((window) => {
             window.localStorage.setItem('isLogin', true)
             window.localStorage.setItem('signUpData', JSON.stringify([{

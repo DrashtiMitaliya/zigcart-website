@@ -15,10 +15,6 @@ import { updateProfileValidations } from '../../Constants/validation'
 import { Messages } from '../../Constants/Messages';
 
 export const UpdateProfilePage = () => {
-
-    const userProfileData = JSON.parse(localStorage.getItem('signUpData'));
-    const currentUserData = userProfileData.find((item) => item.isActive === true)
-
     /* Setting the initial values of the form. */
     const initialValues = {
         firstName: '' ,
@@ -37,13 +33,13 @@ export const UpdateProfilePage = () => {
 
         let index = userProfileData.findIndex(item => item.isActive === true)
 
-        if (userProfileData[index].email === currentUserData) {
+        if (userProfileData[index].email === values.email) {
             userProfileData[index].firstName = values.firstName
             userProfileData[index].lastName = values.lastName
             userProfileData[index].phoneNumber = values.phoneNumber
             localStorage.setItem('signUpData', JSON.stringify(userProfileData))
             toast.success(Messages.ProfilePage_Update)
-        } else if (userProfileData[index].email !== currentUserData) {
+        } else if (userProfileData[index].email !== values.email) {
             if (userProfileData.some(item => item.email === values.email)) {
                 toast.error(Messages.AlreadyExists_Mail)
             } else {
