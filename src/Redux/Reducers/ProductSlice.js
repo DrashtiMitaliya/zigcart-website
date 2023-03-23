@@ -37,7 +37,6 @@ const ProductSlice = createSlice({
             state.error=""
         })
         builder.addCase(fetchProducts.rejected, (state, action) => {
-          
             state.loading = false;
             state.products = [];
             state.error = action.error.message;
