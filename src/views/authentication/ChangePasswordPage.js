@@ -72,23 +72,24 @@ export const ChangePasswordPage = () => {
                             <Stack spacing={4}>
                                 <div className="mb-3">
                                     <label htmlFor="fname" className="form-label" ><span className="text-danger fs-5">*</span> Current Password</label>
-                                    <Field type="password" className="form-control" name='password' />
+                                    <Field type="password" className="form-control" name='password' id='password'/>
                                     <p className='text-danger'><ErrorMessage name='password'></ErrorMessage></p>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="lname" className="form-label"><span className="text-danger fs-5">*</span>New Password </label>
-                                    <Field type="password" className="form-control" name='nPassword' />
+                                    <Field type="password" className="form-control" name='nPassword' id='newPassword' />
                                     <p className='text-danger'><ErrorMessage name='nPassword' ></ErrorMessage></p>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label"> <span className="text-danger fs-5">*</span>Confirm New Password </label>
-                                    <Field type="password" className="form-control" name='confirmPassword' />
+                                    <Field type="password" className="form-control" name='confirmPassword' id='confirmPassword' />
                                     <p className='text-danger'> <ErrorMessage name='confirmPassword'></ErrorMessage></p>
                                 </div>
 
                             </Stack>
                             <Stack spacing={10} pt={2}>
                                 <Button
+                                id='SetPasswordButton'
                                     type='submit'
                                     loadingText="Submitting"
                                     size="md"

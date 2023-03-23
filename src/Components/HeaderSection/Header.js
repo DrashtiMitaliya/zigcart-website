@@ -49,7 +49,7 @@ export const Header = () => {
           </Nav>
        {
 
-        isActive && <Link to='/login'><Button variant="light d-flex align-items-center " onClick={logout} >  <RiLogoutBoxRFill /> Log Out
+        isActive && <Link to='/login'><Button id='LogOutButton' variant="light d-flex align-items-center " onClick={logout} >  <RiLogoutBoxRFill /> Log Out
           </Button>
           </Link>
        }
