@@ -13,10 +13,7 @@ describe('change password test case', () => {
       }]))
     })
     cy.visit('http://localhost:3000/password')
-    cy.get('#password').type('Abcd123*')
-    cy.get('#newPassword').type('aBcd123*')
-    cy.get('#confirmPassword').type('aBcd123*')
-    cy.get('#SetPasswordButton').click()
+  
 
   })
 

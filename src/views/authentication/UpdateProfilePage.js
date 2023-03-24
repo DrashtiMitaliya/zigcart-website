@@ -15,12 +15,14 @@ import { updateProfileValidations } from '../../Constants/validation'
 import { Messages } from '../../Constants/Messages';
 
 export const UpdateProfilePage = () => {
+    const userProfileData = JSON.parse(localStorage.getItem('signUpData'));
+    const currentUserData = userProfileData.find((item) => item.isActive === true)
     /* Setting the initial values of the form. */
     const initialValues = {
-        firstName: '' ,
-        lastName:'' ,
-        email:'',
-        phoneNumber: '',
+        firstName: currentUserData.firstName,
+        lastName: currentUserData.lastName,
+        email: currentUserData.email,
+        phoneNumber: currentUserData.phoneNumber,
     }
 
 

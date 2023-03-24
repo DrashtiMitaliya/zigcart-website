@@ -23,7 +23,7 @@ describe('UpdateProfilePage', () => {
     
       })
     
-      it('Update profile page with already exist email address', () => {
+      it('Update profile page with already exists email address', () => {
         cy.window().then((window) => {
             window.localStorage.setItem('isLogin', true)
             window.localStorage.setItem('signUpData', JSON.stringify([{
@@ -48,6 +48,6 @@ describe('UpdateProfilePage', () => {
         cy.get('#ProfileEmail').type('virat@gmail.com')
         cy.get('#ProfilePhoneNumber').type('0987654321')
         cy.get('#ProfileButton').click()
-        // cy.get('#ProfileButton').should('be.visible')
+  
       })
 });
