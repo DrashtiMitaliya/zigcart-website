@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 describe('API Call Test', () => {
+  
+  
     it('Fetch product details', () => {
       cy.request('GET', `https://dummyjson.com/products/1`)
         .then((response) => {
