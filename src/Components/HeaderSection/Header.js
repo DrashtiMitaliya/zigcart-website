@@ -39,11 +39,12 @@ export const Header = () => {
       <Navbar bg="light" variant="light" className='flex-wrap flex-column'>
         <Container className='d-flex'>
           <BsFillCartCheckFill size={40} />
-          <Navbar.Brand href="#home">Zig Cart</Navbar.Brand>
+          <Navbar.Brand href="#home" >Zig Cart</Navbar.Brand>
           <Nav className="me-auto">
-            <Link to='/' className='mx-3'>Home </Link>
+            { 
+            isActive &&   <Link to='/' className='mx-3'>Home </Link>}
             {
-              isActive && <Link Link to='profile' >Profile </Link>
+              isActive && <Link Link to='profile' id='profilePage'>Profile </Link>
             }
 
           </Nav>
@@ -54,7 +55,7 @@ export const Header = () => {
           </Link>
        }
           {
-            isActive && <Link to='password'> <Button variant="light d-flex align-items-center " > <RiLockPasswordFill /> Change Password  </Button></Link>
+            isActive && <Link to='password'> <Button variant="light d-flex align-items-center " id='changePasswordPage' > <RiLockPasswordFill /> Change Password  </Button></Link>
           }
         </Container>
       </Navbar>

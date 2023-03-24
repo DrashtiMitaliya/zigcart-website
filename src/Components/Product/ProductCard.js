@@ -72,7 +72,7 @@ export const ProductCard = () => {
                                             </div>
                                         </Card.Text>
                                     </Card.Body>
-                                    <Card.Footer className="text-muted text-center"><Link to={`/products/${data.id}`}> <Button variant="secondary"  >  Show More  </Button></Link></Card.Footer>
+                                    <Card.Footer className="text-muted text-center"><Link to={`/products/${data.id}`}> <Button variant="secondary"  id='showMoreDetailsButton' >  Show More  </Button></Link></Card.Footer>
                                 </Card>
                             </Col>
 

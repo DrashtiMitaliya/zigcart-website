@@ -27,7 +27,7 @@ export const ProductDetails = () => {
                 /* The code that displays the products all details. */
                 <div className='container '>
                     <div >
-                        <Link to='/home'><Button variant='bold' colorScheme='light' >
+                        <Link to='/home'><Button variant='bold' colorScheme='light' id='BackButton' >
                             <GrLinkPrevious />
                         </Button></Link>
                     </div>
